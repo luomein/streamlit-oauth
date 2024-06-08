@@ -24,7 +24,8 @@ def main():
     st.write(st.query_params)
     code = st.query_params.get('code')
     if code and 'access_token' not in st.session_state:
-        code = code[0]
+        #code = code[0]
+        st.write(code)
         token_url = "https://github.com/login/oauth/access_token"
         token_data = {
             "client_id": GITHUB_CLIENT_ID,
@@ -35,6 +36,7 @@ def main():
             "Accept": "application/json"
         }
         response = requests.post(token_url, data=token_data, headers=token_headers)
+        st.write(response , response.json())
         response_json = response.json()
         access_token = response_json.get('access_token')
 
